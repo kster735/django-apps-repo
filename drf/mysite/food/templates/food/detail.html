@@ -1,13 +1,12 @@
 {% extends 'food/base.html' %}
 {% block body %}
   <main class="container">
-    <h1 class="mb-4 display-1">{{ item_name }}</h1>
+    <h1 class="mb-4 display-1 text-primary">{{ item_name }}</h1>
     <div class="row g-3 h-100">
-      <div class="col-sm-6">
-        <img src="{{ item_image.url }}" alt="{{ item_name }}" height="256" class="object-fit-cover w-100" />
+      <div class="col-sm-6 col-lg-4">
+        <img src="{{ item_image.url }}" alt="{{ item_name }}" width="360" height="360" class="rounded object-fit-cover w-100" />
       </div>
-      <ul class="list-group list-group-flush col-sm-6">
-        {% comment %} <li class="list-group-item">Id : {{ id }}</li> {% endcomment %}
+      <ul class="list-group list-group-flush col-sm-6 col-lg-8">
         <li class="list-group-item">
           <strong>Title:</strong> {{ item_name }}
         </li>
