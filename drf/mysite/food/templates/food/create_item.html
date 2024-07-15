@@ -1,0 +1,59 @@
+{% extends 'food/base.html' %}
+
+{% block body %}
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 col-xl-6 offset-xl-3 bg-light p-4 mb-4">
+          <div class="mb-4">
+            <h1 class="text-primary">Input details for new food item</h1>
+          </div>
+          <form method="POST" id="add_item_form" enctype="multipart/form-data" class="d-flex flex-column gap-4 mt-4" novalidate>
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-floating">
+              {{ form.item_name }}
+              <label for="id_item_name" class="form-label">{{ form.item_name.label }}</label>
+              <div class="lh-1">
+                {% for error in form.item_name.errors %}
+                  <div>
+                    <small class="text-danger">{{ error|striptags }}</small>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="item_desc" class="form-label">{{ form.item_desc.label }}</label>
+              {{ form.item_desc }}
+              <small class="text-danger">{{ form.item_desc.errors|striptags }}</small>
+            </div>
+            <div class="form-floating">
+              {{ form.item_price }}
+              <label for="item_price" class="form-label">{{ form.item_price.label }}</label>
+              <small class="text-danger">{{ form.item_price.errors|striptags }}</small>
+            </div>
+            <div class="form-group">
+              {% if item %}
+                <img src="{{ item.item_image.url }}" alt="{{ item.item_name }}" width="256" />
+              {% endif %}
+              <br />
+              <label for="item_image" class="form-label">{{ form.item_image.label }}</label>
+              {{ form.item_image }}
+              <small class="text-danger">{{ form.item_image.errors|striptags }}</small>
+            </div>
+            <div class="from-group mt-4">
+              <button type="submit" class="btn btn-success form-control mb-2">Save</button>
+              <a class="btn btn-outline-danger form-control" href="{% url 'food:create_item' %}">Clear</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    function clearInputItemForm(e) {
+      const myform = document.getElementById('add_item_form')
+      myform.reset()
+    }
+  </script>
+{% endblock %}

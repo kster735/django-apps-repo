@@ -1,0 +1,54 @@
+{% extends 'food/base.html' %}
+{% block body %}
+  <main class="container">
+    <h1 class="mb-4 display-1">{{ item_name }}</h1>
+    <div class="row g-3 h-100">
+      <div class="col-sm-6">
+        <img src="{{ item_image.url }}" alt="{{ item_name }}" height="256" class="object-fit-cover w-100" />
+      </div>
+      <ul class="list-group list-group-flush col-sm-6">
+        {% comment %} <li class="list-group-item">Id : {{ id }}</li> {% endcomment %}
+        <li class="list-group-item">
+          <strong>Title:</strong> {{ item_name }}
+        </li>
+        <li class="list-group-item">
+          <strong>Description:</strong> {{ item_desc }}
+        </li>
+        <li class="list-group-item">
+          <strong>Price:</strong> &#8364;{{ item_price }}
+        </li>
+        <li class="list-group-item">
+          <a href="{% url 'food:update_item' id %}" class="btn btn-info btn-lg">Edit</a>
+
+          {% comment %}Delete modal here{% endcomment %}
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"><span class="text-danger">Delete</span> {{ item_name }}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Είστε σίγουροι ότι θέλετε να διαγράψετε μόνιμα αυτό το φαγητό;</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <form action="{% url 'food:delete_item' id %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.id }}
+                    <button type="submit" class="btn btn-danger">Confirm delete</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% comment %}end of delete modal{% endcomment %}
+        </li>
+      </ul>
+    </div>
+  </main>
+{% endblock %}
