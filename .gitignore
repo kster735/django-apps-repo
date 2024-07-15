@@ -1,2 +1,2 @@
 .movie-api-venv
-drf/mysite/.pgpass
+./drf/mysite/.pgpass
