@@ -28,7 +28,8 @@ router.register('action', ActionViewSet, basename='action')
 router.register('scifi', ScifiViewSet, basename='sci-fi')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
+    path('', include("home.urls")),
     path('food/', include("food.urls")),
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),

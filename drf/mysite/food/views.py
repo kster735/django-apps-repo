@@ -69,3 +69,6 @@ def delete_item(request, id):
     }
 
     return render(request, 'food/detail.html', context)
+
+
+

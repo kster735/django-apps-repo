@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'movies.apps.MoviesConfig',
     'food.apps.FoodConfig',
     'users.apps.UsersConfig',
+    'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
