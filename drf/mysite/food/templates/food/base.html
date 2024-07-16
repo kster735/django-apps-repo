@@ -20,12 +20,11 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'food:index' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'food:create_item' %}">Add</a>
-            </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'food:create_item' %}">Add</a>
+              </li>
+            {% endif %}
 
             {% comment %}Account Settings dropdown{% endcomment %}
 
@@ -39,7 +38,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a class="dropdown-item" href="#">Account Setting</a>
+                    <a class="dropdown-item" href="{% url 'profile' %}">Account Setting</a>
                   </li>
                   <li>
                     <a class="dropdown-item" href="/admin">Admin</a>
