@@ -9,7 +9,7 @@ class Item(models.Model):
     item_desc = models.CharField(max_length=200)
     item_price = models.FloatField()
     item_image = models.ImageField(upload_to='Images/', default='Images/None/Noimg.jpeg')
-    item_created_at = models.DateTimeField(auto_created=True)
+    item_created_at = models.DateTimeField(default=timezone.now())
     item_last_updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
