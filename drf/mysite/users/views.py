@@ -4,6 +4,7 @@ from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 # Create your views here.
 def register(request):
@@ -26,4 +27,5 @@ def logout_view(request):
 
 @login_required
 def profilepage(request):
-    return render(request, 'users/profile.html')
+    context = {'request': request}
+    return render(request, 'users/profile.html', context)

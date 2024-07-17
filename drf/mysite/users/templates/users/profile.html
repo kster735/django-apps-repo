@@ -2,6 +2,11 @@
 
 {% block body %}
   <main>
-    <div class="container">{{ user.username }}</div>
+    <div class="container">
+      <div class="d-flex align-items-center gap-2">
+        <img src="{{ user.profile.image.url }}" width="24" height="24" alt="profile image" class="rounded-pill object-fit-cover border border-1 border-primary" />
+        {{ user.username }}
+      </div>
+    </div>
   </main>
 {% endblock %}

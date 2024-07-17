@@ -43,7 +43,6 @@ def create_item(request):
 
 def update_item(request, id):
     item = Item.objects.get(pk=id)
-
     if request.method == 'POST':
         form = ItemForm(request.POST or None, request.FILES, instance=item)
         if form.is_valid():
