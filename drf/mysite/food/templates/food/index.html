@@ -4,7 +4,7 @@
     <h1 class="my-5 text-primary display-1">Welcome to the Food App</h1>
     <br />
     <ul class="list-group border-0 my-4 d-flex flex-column gap-5">
-      {% for item in items_list %}
+      {% for item, updated_before in items_list %}
         <li class="list-group-item border-0">
           <div class="card mb-3 border-0">
             <div class="row">
@@ -18,7 +18,7 @@
                     <strong>Price:</strong> {{ item.item_price }}
                   </p>
                   <p class="card-text">
-                    <small class="text-body-secondary">Last updated at {{ item.item_last_updated_at }}</small>
+                    <small class="text-body-secondary">Last updated since {{ updated_before }}</small>
                   </p>
                 </div>
               </div>

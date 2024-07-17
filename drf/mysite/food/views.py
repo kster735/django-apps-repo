@@ -9,8 +9,11 @@ from .forms import ItemForm, ItemDeleteForm
 
 def index(request):
     items = Item.objects.all()
+    updated_before = [ i.updated_before() for i in items]
+    items_list = zip(items, updated_before)
+
     context = {
-        "items_list": items,
+        "items_list": items_list,
     }
     return render(request, 'food/index.html', context)
 

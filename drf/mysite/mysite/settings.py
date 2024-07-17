@@ -88,17 +88,31 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #     }
 # }
 
-# PSQL driver
+# PSQL driver with service name
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'OPTIONS': {
+#             "service": "django_test",
+#             "passfile": ".pgpass",
+#         },
+#     }
+# }
+
+# PSQL driver without service name
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            "service": "pgservice",
-            "passfile": ".pgpass",
-        },
-    }
+        'HOST': 'localhost',
+        'PORT': 5432,
+        'NAME': 'djangodb',
+        'USER': 'stergios',
+        'PASSWORD': 'c0pr@n@',
+        # 'OPTIONS': {
+        #     'passfile': '.custompgpass',
+        # }
+    },
 }
-
 
 
 # Password validation
