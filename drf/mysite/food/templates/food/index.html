@@ -1,68 +1,50 @@
 {% extends 'food/base.html' %} {% block body %}
-<main class="container">
-  <h1 class="my-5 text-primary display-1">Welcome to the Food App</h1>
-  <br />
-  <ul class="list-group border-0 my-4 d-flex flex-column gap-5">
-    {% for item, updated_before in items_list %}
-    <li class="list-group-item border-0">
-      <div class="card mb-3 border-0">
-        <div class="row">
-          <div class="col-md-5">
-            <img
-              src="{{ item.item_image.url }}"
-              class="image-fluid rounded-5 w-100 object-fit-cover"
-              alt="{{ item.item_name }}"
-              style="height: 360px"
-            />
-          </div>
-          <div class="col-md-5">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.item_name }}</h5>
-              <p class="card-text">
-                <strong>Price:</strong> {{ item.item_price }}
-              </p>
-              <p class="card-text">
-                <small class="text-body-secondary">
-                  Last updated {{ updated_before }} ago
-                </small>
-              </p>
+  <main class="container">
+    <h1 class="my-5 text-primary display-1">Welcome to the Food App</h1>
+    <br />
+    <ul class="list-group border-0 my-4 d-flex flex-column gap-5">
+      {% for item in items_list %}
+        <li class="list-group-item border-0">
+          <div class="card mb-3 border-0">
+            <div class="row">
+              <div class="col-md-5">
+                <img src="{{ item.item_image.url }}" class="image-fluid rounded-5 w-100 object-fit-cover" alt="{{ item.item_name }}" style="height: 360px" />
+              </div>
+              <div class="col-md-5">
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.item_name }}</h5>
+                  <p class="card-text">
+                    <strong>Price:</strong> {{ item.item_price }}
+                  </p>
+                  <p class="card-text">
+                    <small class="text-body-secondary">Last updated {{ item.updated_before }} ago</small>
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-2 p-3">
+                <a href="{% url 'food:detail' item.id %}" class="btn btn-primary w-100">Details</a>
+              </div>
             </div>
           </div>
-          <div class="col-md-2 p-3">
-            <a
-              href="{% url 'food:detail' item.id %}"
-              class="btn btn-primary w-100"
-              >Details</a
-            >
-          </div>
-        </div>
-      </div>
-    </li>
-    <hr />
-    {% endfor %}
-  </ul>
-  {% comment %}
-  <div class="dropdown">
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Dropdown button
-    </button>
-    <ul class="dropdown-menu">
-      <li>
-        <a class="dropdown-item" href="#">Action</a>
-      </li>
-      <li>
-        <a class="dropdown-item" href="#">Another action</a>
-      </li>
-      <li>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </li>
+        </li>
+        <hr />
+      {% endfor %}
     </ul>
-  </div>
-  {% endcomment %}
-</main>
+    {% comment %}
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown button</button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#">Action</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Another action</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </li>
+      </ul>
+    </div>
+    {% endcomment %}
+  </main>
 {% endblock %}

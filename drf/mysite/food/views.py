@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from .models import Item
 from .forms import ItemForm, ItemDeleteForm
+from django.views.generic.list import ListView
 
 # from datetime import datetime, time, timedelta
 # from django.db.models.functions import Now
@@ -17,6 +18,19 @@ def index(request):
     }
     return render(request, 'food/index.html', context)
 
+class IndexClassView(ListView):
+    model = Item
+    context_object_name = 'items_list'
+    template_name = 'food/index.html'
+
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        updated_before = [ i.updated_before() for i in context["items_list"]]
+        context["updated_before"] = updated_before 
+        return context
+    
+    
+    
 def detail(request, id):
     item = Item.objects.get(pk=id)
     context = {
